@@ -19,6 +19,7 @@ public class PowerController : MonoBehaviour
     public Color lowPowerColour = Color.green;
     public Color mediumPowerColour = Color.yellow;
     public Color highPowerColour = Color.red;
+    public ParticleSystem grassParticle;
 
     public TMP_Text shotCounterText;
 
@@ -108,6 +109,11 @@ public class PowerController : MonoBehaviour
             powerFill.color = Color.white;
         }
 
+        if (grassParticle != null)
+        {
+            grassParticle.gameObject.SetActive(true);
+        }
+
         if (ballEffects != null)
         {
             ballEffects.PlayShotEffect();
@@ -125,6 +131,11 @@ public class PowerController : MonoBehaviour
     {
         charging = false;
         locked = false;
+
+        if (grassParticle != null)
+        {
+            grassParticle.gameObject.SetActive(false);
+        }
 
         AimController aim = aimPivot.GetComponent<AimController>();
 
