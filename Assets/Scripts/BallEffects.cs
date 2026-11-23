@@ -17,6 +17,7 @@ public class BallEffects : MonoBehaviour
 
     private Vector3 originalScale;
     private Coroutine currentPunch;
+    public ParticleSystem grassParticle;
 
     void Awake()
     {
@@ -49,10 +50,18 @@ public class BallEffects : MonoBehaviour
             ) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            if (grassParticle != null)
+            {
+            grassParticle.gameObject.SetActive(true);
+            }
         }
         else
         {
             transform.rotation = Quaternion.identity;
+            if (grassParticle != null)
+            {
+            grassParticle.gameObject.SetActive(false);
+            }
         }
 
         if (currentPunch == null)
